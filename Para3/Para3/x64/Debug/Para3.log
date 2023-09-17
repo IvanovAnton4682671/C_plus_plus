@@ -1,0 +1,4 @@
+﻿  Para3.cpp
+D:\Programming\5 Параллельное\Para3\Para3\Para3.cpp(96,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+D:\Programming\5 Параллельное\Para3\Para3\Para3.cpp(93): warning C4101: i: неиспользованная локальная переменная
+  Para3.vcxproj -> D:\Programming\5 Параллельное\Para3\x64\Debug\Para3.exe
