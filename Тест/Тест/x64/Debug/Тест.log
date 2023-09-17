@@ -1,0 +1,3 @@
+﻿  Тест.cpp
+D:\Programming\1 АиАС\Тест\Тест\Тест.cpp(17,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Тест.vcxproj -> D:\Programming\1 АиАС\Тест\x64\Debug\Тест.exe
