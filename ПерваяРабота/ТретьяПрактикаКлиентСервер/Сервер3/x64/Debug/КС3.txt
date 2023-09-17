@@ -1,0 +1,235 @@
+//Клиент
+#include <iostream>
+#include <fstream>
+#include <windows.h>
+using namespace std;
+
+// структура данных запроса клиента
+
+struct Person
+{
+	char name[25];
+	int math;
+	int diskretka;
+	int algebra;
+	int proga;
+	int dolg;
+	char faculty[25];
+} A;
+
+
+void main() {
+	setlocale(LC_ALL, "Rus");
+
+	//const char* nameR = "REQUEST.bin";
+	string nameR = "Request.bin";
+
+	//файл для запросов клиентов
+	//const char* nameA = "ANSWER.bin";
+	//файл для ответов сервера
+	ofstream f_REQ;
+	ifstream f_ANS;
+	long pred_size;
+	int answer;
+
+	cout << "Клиент начал свою работу. Можете начинать работу." << endl;
+	cout << "Введите название вашего факультета: " << endl;
+	cin >> A.faculty;
+	string nameA = A.faculty;
+	f_ANS.open(nameA + ".bin", ios::app, ios::binary);
+	f_ANS.close();
+
+	while (true)
+	{
+		// Получаем название файла и создаём файл с ответом для него
+
+
+		// передача данных от клиента серверу
+		cout << "Введите фамилию: " << endl;
+		cin >> A.name;
+		// получаем оценки по предметам
+		cout << "Введите оценки по предметам" << endl;
+		cout << "Алгебра: " << endl;
+		cin >> A.algebra;
+		cout << "Дискретка: " << endl;
+		cin >> A.diskretka;
+		cout << "Математический анализ: " << endl;
+		cin >> A.math;
+		cout << "Основы программирования: " << endl;
+		cin >> A.proga;
+		cout << "Ваше имя: " << A.name << endl;
+		f_REQ.open(nameR, ios::app | ios::binary);
+		//открытие файла REQUEST 
+		f_REQ.write((char*)&A, sizeof(A));
+		//запись запроса в файл REQUEST
+		f_REQ.close();
+		// поступил ответ от сервера?
+		f_ANS.open(nameA + ".bin", ios::binary);
+		//открытие файла ANSWER
+		f_ANS.seekg(0, ios::end);
+		//переход в конец файла ANSWER
+		pred_size = f_ANS.tellg();
+		while (pred_size >= f_ANS.tellg())
+		{
+			Sleep(100);
+			// ждем и переходим в конец файла ANSWER
+			f_ANS.seekg(0, ios::end);
+		}
+		// получение ответа от сервера	
+		f_ANS.seekg(pred_size, ios::beg);
+		// на начало нового ответа
+		f_ANS.read((char*)&answer, sizeof(answer)); //считывание ответа
+		f_ANS.close();
+
+
+		// расшифровка ответа
+		switch (answer) {
+		case 2: {cout << "У вас отсутвует стипендия." << endl; break; }
+		case 3: {cout << "У вас есть стипендия (5000 р.)." << endl; break; }
+		case 4: {cout << "Поздравляем, у вас повышенная стипендия (10000 р.)." << endl; break; }
+		case -1: {cout << "У вас задолженость по одному предмету." << endl; break; }
+		case -2: {cout << "У вас задолженость по двум предметам." << endl; break; }
+		case -3: {cout << "У вас задолженость по трём предметам." << endl; break; }
+		case -4: {cout << "У вас задолженость по четырём предметам." << endl; break; }
+
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Сервер
+#include <iostream>
+#include <fstream>
+#include <windows.h>
+using namespace std;
+
+struct Person
+{
+	char name[25];
+	int math;
+	int diskretka;
+	int algebra;
+	int proga;
+	int dolg;
+	char faculty[25];
+}B;
+
+int answer;
+long size_pred;
+int main() {
+	ifstream fR;
+	ofstream fA;
+	setlocale(LC_ALL, "Rus");
+	string nameR = "Request.bin";
+	cout << "Сервер начал свою работу. Можете начинать работу." << endl;
+
+	fR.open(nameR, ios::binary);
+	//открытие файла REQUEST
+	fR.seekg(0, ios::end);
+	size_pred = fR.tellg();
+	//стартовая позиция сервера в файле REQUEST
+	fR.close();
+
+	// начальные установки
+	fR.open(nameR, ios::binary);
+	//открытие файла REQUEST
+	fR.seekg(0, ios::end);
+	size_pred = fR.tellg();
+	//стартовая позиция сервера в файле REQUEST
+	fR.close();
+
+	// начало работы сервера
+	while (true)
+	{
+
+		fR.open(nameR, ios::binary);
+		//открытие файла REQUEST
+		fR.seekg(0, ios::end);
+		//переход в конец файла REQUEST
+		// есть новые запросы от клиентов? 
+		while (size_pred >= fR.tellg())
+		{
+			Sleep(100); fR.seekg(0, ios::end);
+
+		}
+		cout << "На сервер поступил новый запрос." << endl;
+		// получен новый запрос 
+		fR.seekg(size_pred, ios::beg);
+		//переход к началу полученного запроса
+		fR.read((char*)&B, sizeof(B));
+		//считывание данных клиента
+		size_pred = fR.tellg();
+		// на конец обработанных данных
+		fR.close();
+
+
+
+
+		if (B.math == 2 || B.diskretka == 2 || B.algebra == 2 || B.proga == 2) {
+			answer = 0;
+			if (B.math == 2)
+				answer--;
+			if (B.diskretka == 2)
+				answer--;
+			if (B.algebra == 2)
+				answer--;
+			if (B.proga == 2)
+				answer--;
+		}
+		else {
+			if (B.math == 3 || B.diskretka == 3 || B.algebra == 3 || B.proga == 3)
+				answer = 2;
+			else if (B.math == 5 && B.diskretka == 5 && B.algebra == 5 && B.proga == 5)
+				answer = 4;
+			else
+				answer = 3;
+		}
+
+		// передача ответа клиенту
+		string nameA = B.faculty;
+		fA.open(nameA + ".bin", ios::binary | ios::app);
+		//открытие файла ANSWER
+		fA.write((char*)&answer, sizeof(answer));
+		//запись ответа клиенту
+		fA.close();
+	}
+}
