@@ -1,0 +1,5 @@
+﻿  Клиент.cpp
+D:\Programming\2 КС\ТестоваяПрограммаTelNet\TelNet\Клиент\Клиент.cpp(1,1): warning C4335: Обнаружен файл в формате Mac: преобразуйте исходный файл в формат DOS или UNIX
+D:\Programming\2 КС\ТестоваяПрограммаTelNet\TelNet\Клиент\Клиент.cpp(1,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+MSVCRTD.lib(exe_main.obj) : error LNK2019: ссылка на неразрешенный внешний символ main в функции "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ).
+D:\Programming\2 КС\ТестоваяПрограммаTelNet\TelNet\x64\Debug\Клиент.exe : fatal error LNK1120: неразрешенных внешних элементов: 1
