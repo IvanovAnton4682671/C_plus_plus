@@ -1,0 +1,3 @@
+﻿  Izomorphizm.cpp
+D:\Programming\5 Параллельное\Izomorphizm\Izomorphizm\Izomorphizm.cpp(100,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Izomorphizm.vcxproj -> D:\Programming\5 Параллельное\Izomorphizm\x64\Debug\Izomorphizm.exe

@@ -1,0 +1,4 @@
+﻿  IW2.cpp
+D:\Programming\5 Параллельное\Individual work\IW2\IW2\IW2.cpp(24,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+D:\Programming\5 Параллельное\Individual work\IW2\IW2\IW2.cpp(61,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  IW2.vcxproj -> D:\Programming\5 Параллельное\Individual work\IW2\x64\Debug\IW2.exe
