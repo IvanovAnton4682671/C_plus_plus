@@ -1,0 +1,3 @@
+﻿  Клиент.cpp
+D:\Programming\2 КС\ЧетвёртаяРабота\ПерваяРаботаHTTPrequest\Клиент\Клиент.cpp(48,5): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  Клиент.vcxproj -> D:\Programming\2 КС\ЧетвёртаяРабота\ПерваяРаботаHTTPrequest\x64\Debug\Клиент.exe
